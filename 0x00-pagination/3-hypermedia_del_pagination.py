@@ -42,6 +42,22 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-        """passes
+        """Dataset indexed by sorting position, starting at 0
         """
-        pass
+        dataset = self.indexed_dataset()
+        assert type(index) is int and index in range(len(dataset))
+        rows = []
+        i = index
+        j = index + page_size
+        while i < j:
+            if i in dataset.keys():
+                rows.append(dataset[i])
+            else:
+                j += 1
+            i += 1
+        return {
+            "index": index,
+            "data": rows,
+            "page_size": len(rows),
+            "next_index": j
+            }
