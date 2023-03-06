@@ -1,9 +1,8 @@
-
 #!/usr/bin/env python3
 """ Route module for the API """
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
-
+from typing import Union
 
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
